@@ -1,6 +1,7 @@
 package io.renren.modules.department.controller;
 
 import java.util.Arrays;
+import java.util.List;
 import java.util.Map;
 
 import io.renren.modules.department.entity.DepartmentEntity;
@@ -20,10 +21,8 @@ import io.renren.common.utils.R;
 
 /**
  * 
+ * 系部
  *
- * @author chenshun
- * @email sunlightcs@gmail.com
- * @date 2020-12-07 20:06:01
  */
 @RestController
 @RequestMapping("generator/department")
@@ -31,6 +30,16 @@ public class DepartmentController {
     @Autowired
     private DepartmentService departmentService;
 
+    /**
+     * 按id查询
+     */
+    @RequestMapping("/findById")
+    @RequiresPermissions("generator:department:findById")
+    public R findById(String id){
+        List<DepartmentEntity> pageUtils = departmentService.findByName(id);
+
+        return  R.ok().put("page",pageUtils);
+    }
     /**
      * 列表
      */

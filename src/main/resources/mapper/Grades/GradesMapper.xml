@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="io.renren.modules.grades.entity.GradesEntity">
+
+    <insert id="addIntellectually" parameterType="io.renren.modules.grades.entity.GradesEntity">
+      insert into grades (intellectually,physically) values(#{intellectually},#{physically}) where stuid = #{stuid}
+    </insert>
+
+    <update id="updateByName" parameterType="io.renren.modules.grades.entity.GradesEntity">
+    update grades set
+    intellectually=#{intellectually},
+    physically=#{physically}
+    where stuid = #{stuid}
+  </update>
+
+    <select id="findByStuid" resultType="java.lang.Integer">
+    SELECT
+    count(*)
+    FROM grades
+    WHERE stuid = #{stuid}
+  </select>
+
+
+</mapper>
