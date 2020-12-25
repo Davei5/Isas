@@ -8,10 +8,7 @@ import java.util.Map;
 
 /**
  *
- *
- * @author chenshun
- * @email sunlightcs@gmail.com
- * @date 2020-12-09 09:18:26
+ *Service层
  */
 public interface StudentService extends IService<StudentEntity> {
 

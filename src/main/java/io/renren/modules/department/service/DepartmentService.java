@@ -8,11 +8,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * 
- *
- * @author chenshun
- * @email sunlightcs@gmail.com
- * @date 2020-12-07 20:06:01
+ *系部表 Service层
  */
 public interface DepartmentService extends IService<DepartmentEntity> {
 

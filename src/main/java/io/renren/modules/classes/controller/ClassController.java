@@ -20,10 +20,7 @@ import io.renren.common.utils.R;
 
 /**
  * 
- *
- * @author chenshun
- * @email sunlightcs@gmail.com
- * @date 2020-12-07 19:03:50
+ *班级表 控制层
  */
 @RestController
 @RequestMapping("generator/class")

@@ -8,10 +8,8 @@ import java.util.Map;
 
 /**
  * 
- *
- * @author chenshun
- * @email sunlightcs@gmail.com
- * @date 2020-12-07 19:48:44
+ *成绩表 Service层
+ * 实现基本增删改查
  */
 public interface GradesService extends IService<GradesEntity> {
 

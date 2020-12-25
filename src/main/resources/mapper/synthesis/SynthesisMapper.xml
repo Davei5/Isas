@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="io.renren.modules.grades.entity.GradesEntity">
+<mapper namespace="io.renren.modules.synthesis.mapper.SynthesisMapper">
 
     <insert id="addIntellectually" parameterType="io.renren.modules.grades.entity.GradesEntity">
-      insert into grades (intellectually,physically) values(#{intellectually},#{physically}) where stuid = #{stuid}
+      insert into grades(stuid,intellectually,physically) values(#{stuid},#{intellectually},#{physically})
     </insert>
 
-    <update id="updateByName" parameterType="io.renren.modules.grades.entity.GradesEntity">
+    <update id="updateByStuid" parameterType="io.renren.modules.grades.entity.GradesEntity">
     update grades set
     intellectually=#{intellectually},
     physically=#{physically}
@@ -20,5 +20,8 @@
     WHERE stuid = #{stuid}
   </select>
 
+    <select id="selClassNameStu" parameterType="String" resultType="io.renren.modules.studentes.entity.StudentEntity">
+        select * from student where classname in (select classname from student where stuid = #{username});
+    </select>
 
 </mapper>

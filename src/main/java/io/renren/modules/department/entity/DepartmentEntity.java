@@ -8,10 +8,7 @@ import lombok.Data;
 
 /**
  * 
- * 
- * @author chenshun
- * @email sunlightcs@gmail.com
- * @date 2020-12-07 20:06:01
+ * 系部表 实体类
  */
 @Data
 @TableName("department")

@@ -5,11 +5,8 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.apache.ibatis.annotations.Mapper;
 
 /**
- * 
- * 
- * @author chenshun
- * @email sunlightcs@gmail.com
- * @date 2020-12-07 19:03:50
+ *
+ *班级表Dao层
  */
 @Mapper
 public interface ClassDao extends BaseMapper<ClassEntity> {

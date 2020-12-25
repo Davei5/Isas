@@ -21,7 +21,7 @@ import io.renren.common.utils.R;
 
 /**
  * 
- * 系部
+ * 系部表 控制层
  *
  */
 @RestController
@@ -31,12 +31,12 @@ public class DepartmentController {
     private DepartmentService departmentService;
 
     /**
-     * 按id查询
+     * 按部门名查询
      */
-    @RequestMapping("/findById")
-    @RequiresPermissions("generator:department:findById")
-    public R findById(String id){
-        List<DepartmentEntity> pageUtils = departmentService.findByName(id);
+    @RequestMapping("/findByName")
+    @RequiresPermissions("generator:department:findByName")
+    public R findByName(String name){
+        List<DepartmentEntity> pageUtils = departmentService.findByName(name);
 
         return  R.ok().put("page",pageUtils);
     }

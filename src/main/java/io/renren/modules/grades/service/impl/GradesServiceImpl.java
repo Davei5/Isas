@@ -11,7 +11,10 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import io.renren.common.utils.PageUtils;
 import io.renren.common.utils.Query;
 
-
+/**
+ * Service实现类
+ *  基本增删改查
+ */
 @Service("gradesService")
 public class GradesServiceImpl extends ServiceImpl<GradesDao, GradesEntity> implements GradesService {
 

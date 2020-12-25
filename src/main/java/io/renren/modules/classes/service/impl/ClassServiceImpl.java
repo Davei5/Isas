@@ -11,7 +11,9 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import io.renren.common.utils.PageUtils;
 import io.renren.common.utils.Query;
 
-
+/**
+ * service实现类
+ */
 
 @Service("classService")
 public class ClassServiceImpl extends ServiceImpl<ClassDao, ClassEntity> implements ClassService {
