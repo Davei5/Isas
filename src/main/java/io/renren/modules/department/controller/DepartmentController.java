@@ -34,10 +34,8 @@ public class DepartmentController {
      * 按部门名查询
      */
     @RequestMapping("/findByName")
-    @RequiresPermissions("generator:department:findByName")
     public R findByName(String name){
         List<DepartmentEntity> pageUtils = departmentService.findByName(name);
-
         return  R.ok().put("page",pageUtils);
     }
     /**

@@ -5,7 +5,8 @@
 
 <mapper namespace="io.renren.modules.department.mapper.DepartmentMapper">
 
-    <select id="list" resultType="io.renren.modules.department.entity.DepartmentEntity">
-            select * from  department where depname = #{depname}
-        </select>
+    <select id="findByName" parameterType="String" resultType="io.renren.modules.department.entity.DepartmentEntity">
+            select * from  department where  depname like '%${name}%'
+    </select>
+
 </mapper>

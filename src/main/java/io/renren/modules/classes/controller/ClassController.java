@@ -16,8 +16,6 @@ import org.springframework.web.bind.annotation.RestController;
 import io.renren.common.utils.PageUtils;
 import io.renren.common.utils.R;
 
-
-
 /**
  * 
  *班级表 控制层

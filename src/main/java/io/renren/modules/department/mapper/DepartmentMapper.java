@@ -8,5 +8,5 @@ import java.util.List;
 @Mapper
 public interface DepartmentMapper {
 
-    public List<DepartmentEntity> list(String name);
+    public List<DepartmentEntity> findByName(String name);
 }

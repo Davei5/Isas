@@ -17,6 +17,7 @@ import java.util.List;
 
 /**
  * 上传文件添加成绩的实现类
+ * @author
  */
 @Service
 @Transactional(readOnly = true)     //只读事务：在将事务设置成只读后，相当于将数据库设置成只读数据库，此时若要进行写的操作，会出现错误
@@ -33,7 +34,7 @@ public class UploadScoreServiceImpl implements UploadScoreService {
      * @return
      * @throws Exception
      */
-    @Transactional(readOnly = false,rollbackFor = Exception.class)
+    @Transactional(rollbackFor = Exception.class)
     @Override
     public boolean batchImport(String fileName, MultipartFile file) throws Exception {
 

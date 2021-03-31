@@ -2,10 +2,11 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="io.renren.modules.synthesis.mapper.SynthesisMapper">
 
+    <!--添加智育和德育-->
     <insert id="addIntellectually" parameterType="io.renren.modules.grades.entity.GradesEntity">
       insert into grades(stuid,intellectually,physically) values(#{stuid},#{intellectually},#{physically})
     </insert>
-
+    <!--如果原本存在，则修改-->
     <update id="updateByStuid" parameterType="io.renren.modules.grades.entity.GradesEntity">
     update grades set
     intellectually=#{intellectually},
@@ -13,6 +14,7 @@
     where stuid = #{stuid}
   </update>
 
+    <!--判断原本是否存在数据-->
     <select id="findByStuid" resultType="java.lang.Integer">
     SELECT
     count(*)
@@ -20,8 +22,51 @@
     WHERE stuid = #{stuid}
   </select>
 
+    <!--根据班级名称查询学生-->
     <select id="selClassNameStu" parameterType="String" resultType="io.renren.modules.studentes.entity.StudentEntity">
         select * from student where classname in (select classname from student where stuid = #{username});
     </select>
 
+    <!--添加日常行为规范分-->
+    <update id="updateDailybehavior" parameterType="io.renren.modules.grades.entity.GradesEntity">
+        update grades set dailybehavior=#{dailybehavior} where stuid=#{stuid}
+    </update>
+
+    <!--设置小组测评人员-->
+    <insert id="addSmallGroup" parameterType="String">
+        insert into sys_user_role(user_id,role_id) VALUES
+        ((SELECT user_id from sys_user where username = #{stuid}),6)
+    </insert>
+
+    <!--取消小组测评资格-->
+    <delete id="deleteSmallGroup" parameterType="String">
+        delete FROM sys_user_role where user_id =
+        (SELECT user_id from sys_user where username = #{stuid}) and role_id = 6
+    </delete>
+
+    <!--小组人员评分:如不存在-->
+    <insert id="addGroupScore" parameterType="io.renren.modules.synthesis.entity.IntellectuallyEntity">
+        insert into intellectually(stuid,smallgroup,countgroup) values(#{stuid},#{smallgroup},1)
+    </insert>
+
+    <!--小组人员评分:如存在-->
+    <update id="updateGroupScore" parameterType="io.renren.modules.synthesis.entity.IntellectuallyEntity">
+        update intellectually set smallgroup = smallgroup + #{smallgroup},
+        countgroup = countgroup + 1 where stuid = #{stuid}
+    </update>
+
+    <!--自评分:如不存在-->
+    <insert id="addSelf" parameterType="io.renren.modules.synthesis.entity.IntellectuallyEntity">
+        insert into intellectually(stuid,self) values(#{stuid},#{self})
+    </insert>
+
+    <!--自评分:如存在-->
+    <update id="updateSelf" parameterType="io.renren.modules.synthesis.entity.IntellectuallyEntity">
+        update intellectually set self = #{self} where stuid = #{stuid}
+    </update>
+
+    <!--按学号查询是否存在自评分或小组测评分-->
+    <select id="selectStuId" parameterType="String" resultType="Integer">
+        select count(*) from intellectually where stuid = #{stuid}
+    </select>
 </mapper>

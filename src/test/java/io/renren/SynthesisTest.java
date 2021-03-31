@@ -1,6 +1,8 @@
 package io.renren;
 
+import io.renren.modules.grades.entity.GradesEntity;
 import io.renren.modules.studentes.entity.StudentEntity;
+import io.renren.modules.synthesis.entity.IntellectuallyEntity;
 import io.renren.modules.synthesis.mapper.SynthesisMapper;
 import io.renren.modules.synthesis.service.SynthesisService;
 import io.renren.modules.synthesis.service.UploadScoreService;
@@ -27,6 +29,12 @@ public class SynthesisTest {
     @Autowired
     private SynthesisService synthesisService;
 
+    @Autowired
+    private UploadScoreService uploadScoreService;
+
+    /**
+     * 测试按班级查询学生
+     */
     @Test
     public void fun1(){
         String username = "2017122245141";
@@ -36,11 +44,84 @@ public class SynthesisTest {
         }
     }
 
+    /**
+     * 测试添加日常行为规范分
+     */
+    @Test
+    public void fun2(){
+        double dailybehavior = 5.00;
+        String stuid = "12";
+        GradesEntity gradesEntity = new GradesEntity();
+        gradesEntity.setDailybehavior(dailybehavior);
+        gradesEntity.setStuid(stuid);
+        synthesisService.updateDailybehavior(gradesEntity);
+        System.out.println(gradesEntity);
+    }
 
-    /*@Autowired
-    private UploadScoreService uploadScoreService;
+    /**
+     * 测试添加小组测评人员
+     */
+    @Test
+    public void fun3(){
+        String stuid = "2017122245141";
+        synthesisService.addSmallGroup(stuid);
+    }
+
+    /**
+     * 测试取消小组测评资格
+     */
+    @Test
+    public void fun4(){
+        String stuid="2017122245141";
+        synthesisService.deleteSmallGroup(stuid);
+    }
+
+    /**
+     * 测试自评分
+     */
+    @Test
+    public void fun5(){
+        String stuid = "2017122245142";
+        Double self = 4.00;
+        IntellectuallyEntity intellectuallyEntity = new IntellectuallyEntity();
+        intellectuallyEntity.setSelf(self);
+        intellectuallyEntity.setStuid(stuid);
+        int inc = synthesisService.selectStuId(stuid);
+        if (inc != 0 ){
+            synthesisService.updateSelf(intellectuallyEntity);
+            System.out.println("修改"+intellectuallyEntity);
+        }else{
+            synthesisService.addSelf(intellectuallyEntity);
+            System.out.println("添加"+intellectuallyEntity);
+        }
+    }
+
+    /**
+     * 测试小组评分
+     * 无数据出错，有数据成功
+     */
+    @Test
+    public void fun6(){
+        String stuid = "2017122245141";
+        Double smallgroup = 4.00;
+        IntellectuallyEntity intellectuallyEntity = new IntellectuallyEntity();
+        intellectuallyEntity.setSmallgroup(smallgroup);
+        intellectuallyEntity.setStuid(stuid);
+        int inc = synthesisService.selectStuId(stuid);
+        if (inc != 0 ){
+            synthesisService.updateGroupScore(intellectuallyEntity);
+            System.out.println("修改"+intellectuallyEntity);
+        }else{
+            synthesisService.addGroupScore(intellectuallyEntity);
+            System.out.println("添加"+intellectuallyEntity);
+        }
+    }
 
 
+    /**
+     * 测试添加智育和体侧成绩
+     * @throws Exception
+     */
     @Test
     public void fun() throws Exception{
         String fileNa = "Test.xlsx";
@@ -51,5 +132,6 @@ public class SynthesisTest {
 
         uploadScoreService.batchImport(fileNa,multipartFile);
 
-    }*/
+    }
+
 }

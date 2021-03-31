@@ -42,7 +42,7 @@ public class DepartmentServiceImpl extends ServiceImpl<DepartmentDao, Department
      */
     @Override
     public List<DepartmentEntity> findByName(String name) {
-        return departmentMapper.list(name);
+        return departmentMapper.findByName(name);
     }
 
 }
