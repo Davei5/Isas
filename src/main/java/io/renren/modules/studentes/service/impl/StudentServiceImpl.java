@@ -23,6 +23,7 @@ public class StudentServiceImpl extends ServiceImpl<StudentDao, StudentEntity> i
         IPage<StudentEntity> page = this.page(
                 new Query<StudentEntity>().getPage(params),
                 new QueryWrapper<StudentEntity>()
+                .like("stuid",params.get("key"))
         );
 
         return new PageUtils(page);

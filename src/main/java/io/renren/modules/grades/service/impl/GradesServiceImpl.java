@@ -23,6 +23,7 @@ public class GradesServiceImpl extends ServiceImpl<GradesDao, GradesEntity> impl
         IPage<GradesEntity> page = this.page(
                 new Query<GradesEntity>().getPage(params),
                 new QueryWrapper<GradesEntity>()
+                .like("stuid",params.get("key"))
         );
 
         return new PageUtils(page);

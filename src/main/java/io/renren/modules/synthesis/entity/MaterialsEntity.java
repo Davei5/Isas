@@ -30,5 +30,5 @@ public class MaterialsEntity implements Serializable {
     /**
      * 图片材料
      */
-    private byte[] images;
+    private byte[] image;
 }

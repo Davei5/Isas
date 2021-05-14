@@ -1,5 +1,6 @@
 package io.renren.modules.synthesis.controller;
 
+import io.renren.common.utils.R;
 import io.renren.modules.synthesis.service.UploadScoreService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -9,6 +10,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 /**
  * 实现上传文件，添加智育成绩和体侧成绩
+ * @author
  */
 @RestController
 @RequestMapping("/synthesis/upload")
@@ -23,15 +25,14 @@ public class uploadScoreController {
      * @return
      */
     @RequestMapping("/import")
-    public boolean addGrades(@RequestParam("file") MultipartFile file){
-        boolean a = false;
+    public R addGrades(@RequestParam("file") MultipartFile file){
         String fileName = file.getOriginalFilename();
         try{
-            a = uploadScoreService.batchImport(fileName,file);
+            uploadScoreService.batchImport(fileName,file);
         }catch (Exception e){
             e.printStackTrace();
         }
-        return a;
+        return R.ok();
     }
 
 }

@@ -29,7 +29,7 @@ public class DepartmentServiceImpl extends ServiceImpl<DepartmentDao, Department
     public PageUtils queryPage(Map<String, Object> params) {
         IPage<DepartmentEntity> page = this.page(
                 new Query<DepartmentEntity>().getPage(params),
-                new QueryWrapper<DepartmentEntity>()
+                new QueryWrapper<DepartmentEntity>().like("depname",params.get("key"))
         );
 
         return new PageUtils(page);

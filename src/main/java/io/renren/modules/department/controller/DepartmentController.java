@@ -4,6 +4,9 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
 import io.renren.modules.department.entity.DepartmentEntity;
 import io.renren.modules.department.service.DepartmentService;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
@@ -44,8 +47,8 @@ public class DepartmentController {
     @RequestMapping("/list")
     @RequiresPermissions("generator:department:list")
     public R list(@RequestParam Map<String, Object> params){
-        PageUtils page = departmentService.queryPage(params);
 
+        PageUtils page = departmentService.queryPage(params);
         return R.ok().put("page", page);
     }
 

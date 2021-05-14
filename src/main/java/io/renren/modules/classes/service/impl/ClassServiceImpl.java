@@ -23,6 +23,7 @@ public class ClassServiceImpl extends ServiceImpl<ClassDao, ClassEntity> impleme
         IPage<ClassEntity> page = this.page(
                 new Query<ClassEntity>().getPage(params),
                 new QueryWrapper<ClassEntity>()
+                .like("classname",params.get("key"))
         );
 
         return new PageUtils(page);

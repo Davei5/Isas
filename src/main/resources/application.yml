@@ -74,3 +74,11 @@ renren:
     # token有效时长，7天，单位秒
     expire: 604800
     header: token
+
+alltest:
+  weight:
+    study: 0.7  #学习成绩权重
+    self: 0.3   #自评权重
+    group: 0.7  #小组评分权重
+    physical: 6 #身体素质
+    hour: 0.0714 #参与时长
